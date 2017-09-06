@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "opengles1/VCCRenderingEngine.hpp"
+            timestampString = "518367498.256902"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "tagVCCRenderingEngine"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tagVCCRenderingEngine::~tagVCCRenderingEngine()"
+                  moduleName = "hellocone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qiu/Public/HelloCone/opengles1/VCCRenderingEngine.hpp"
+                  timestampString = "526398169.424078"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tagVCCRenderingEngine::~tagVCCRenderingEngine()"
+                  moduleName = "hellocone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qiu/Public/HelloCone/opengles1/VCCRenderingEngine.hpp"
+                  timestampString = "526398169.425239"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tagVCCRenderingEngine::~tagVCCRenderingEngine()"
+                  moduleName = "hellocone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qiu/Public/HelloCone/opengles1/VCCRenderingEngine.hpp"
+                  timestampString = "526398169.426293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
