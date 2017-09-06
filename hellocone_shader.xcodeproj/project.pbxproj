@@ -97,7 +97,7 @@
 		41D9C4B41EE5331B00BFC29C = {
 			isa = PBXGroup;
 			children = (
-				41D9C4BF1EE5331B00BFC29C /* opengles1 */,
+				41D9C4BF1EE5331B00BFC29C /* opengles2 */,
 				41D9C4D91EE5331B00BFC29C /* opengles1Tests */,
 				41D9C4E41EE5331B00BFC29C /* opengles1UITests */,
 				41D9C4BE1EE5331B00BFC29C /* Products */,
@@ -115,7 +115,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		41D9C4BF1EE5331B00BFC29C /* opengles1 */ = {
+		41D9C4BF1EE5331B00BFC29C /* opengles2 */ = {
 			isa = PBXGroup;
 			children = (
 				41D9C4FE1EE5B1B200BFC29C /* VCCRenderingEngine1.cpp */,
@@ -132,7 +132,7 @@
 				41D9C4D11EE5331B00BFC29C /* Info.plist */,
 				41D9C4C01EE5331B00BFC29C /* Supporting Files */,
 			);
-			path = opengles1;
+			path = opengles2;
 			sourceTree = "<group>";
 		};
 		41D9C4C01EE5331B00BFC29C /* Supporting Files */ = {
