@@ -256,7 +256,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 41D9C4B81EE5331B00BFC29C /* Build configuration list for PBXProject "hellocone" */;
+			buildConfigurationList = 41D9C4B81EE5331B00BFC29C /* Build configuration list for PBXProject "hellocone_shader" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -526,7 +526,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		41D9C4B81EE5331B00BFC29C /* Build configuration list for PBXProject "hellocone" */ = {
+		41D9C4B81EE5331B00BFC29C /* Build configuration list for PBXProject "hellocone_shader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				41D9C4E81EE5331B00BFC29C /* Debug */,

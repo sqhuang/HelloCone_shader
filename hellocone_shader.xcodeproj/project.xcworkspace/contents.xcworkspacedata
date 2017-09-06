@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/qiu/Public/HelloCone/hellocone.xcodeproj">
+      location = "self:/Users/qiu/Public/HelloCone_shader/hellocone_shader.xcodeproj">
    </FileRef>
 </Workspace>
