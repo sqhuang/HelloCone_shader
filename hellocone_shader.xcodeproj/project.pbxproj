@@ -18,7 +18,7 @@
 		41D9C4F51EE537C500BFC29C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D9C4F41EE537C500BFC29C /* OpenGLES.framework */; };
 		41D9C4F71EE537E200BFC29C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D9C4F61EE537E200BFC29C /* QuartzCore.framework */; };
 		41D9C4FA1EE5392B00BFC29C /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41D9C4F91EE5392B00BFC29C /* GLView.mm */; };
-		41D9C5001EE5B1B200BFC29C /* VCCRenderingEngine1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41D9C4FE1EE5B1B200BFC29C /* VCCRenderingEngine1.cpp */; };
+		41D9C5001EE5B1B200BFC29C /* VCCRenderingEngine2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41D9C4FE1EE5B1B200BFC29C /* VCCRenderingEngine2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,7 @@
 		41D9C4F81EE5392B00BFC29C /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
 		41D9C4F91EE5392B00BFC29C /* GLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLView.mm; sourceTree = "<group>"; };
 		41D9C4FC1EE555E500BFC29C /* VCCRenderingEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VCCRenderingEngine.hpp; sourceTree = "<group>"; };
-		41D9C4FE1EE5B1B200BFC29C /* VCCRenderingEngine1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VCCRenderingEngine1.cpp; sourceTree = "<group>"; };
+		41D9C4FE1EE5B1B200BFC29C /* VCCRenderingEngine2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VCCRenderingEngine2.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +118,7 @@
 		41D9C4BF1EE5331B00BFC29C /* opengles2 */ = {
 			isa = PBXGroup;
 			children = (
-				41D9C4FE1EE5B1B200BFC29C /* VCCRenderingEngine1.cpp */,
+				41D9C4FE1EE5B1B200BFC29C /* VCCRenderingEngine2.cpp */,
 				41D9C4FC1EE555E500BFC29C /* VCCRenderingEngine.hpp */,
 				41D9C4F81EE5392B00BFC29C /* GLView.h */,
 				41D9C4F91EE5392B00BFC29C /* GLView.mm */,
@@ -310,7 +310,7 @@
 				41D9C4C51EE5331B00BFC29C /* AppDelegate.mm in Sources */,
 				41D9C4C21EE5331B00BFC29C /* main.mm in Sources */,
 				41D9C4FA1EE5392B00BFC29C /* GLView.mm in Sources */,
-				41D9C5001EE5B1B200BFC29C /* VCCRenderingEngine1.cpp in Sources */,
+				41D9C5001EE5B1B200BFC29C /* VCCRenderingEngine2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
