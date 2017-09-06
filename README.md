@@ -1,2 +1,2 @@
 # HelloCone_shader
-基于着色器的 HelloCone 程序
+基于着色器的 __HelloCone__ 程序
