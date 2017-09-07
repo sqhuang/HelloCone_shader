@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4170EA8B1EE684D700FC8655 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4170EA8A1EE684D700FC8655 /* UIKit.framework */; };
 		4170EA8D1EE6857C00FC8655 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4170EA8C1EE6857C00FC8655 /* CoreGraphics.framework */; };
+		41C0B3361F60DBBA007F8331 /* VCCRenderingEngine1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41C0B3351F60DBBA007F8331 /* VCCRenderingEngine1.cpp */; };
 		41D9C4C21EE5331B00BFC29C /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41D9C4C11EE5331B00BFC29C /* main.mm */; };
 		41D9C4C51EE5331B00BFC29C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41D9C4C41EE5331B00BFC29C /* AppDelegate.mm */; };
 		41D9C4CD1EE5331B00BFC29C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D9C4CC1EE5331B00BFC29C /* Assets.xcassets */; };
@@ -44,6 +45,9 @@
 		41A012611F6009080040EB57 /* Matrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
 		41A012621F6009080040EB57 /* Quaternion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
 		41A012631F6009080040EB57 /* Vector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
+		41C0B3311F60CED3007F8331 /* Simple.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Simple.frag; sourceTree = "<group>"; };
+		41C0B3321F60CED3007F8331 /* Simple.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Simple.vert; sourceTree = "<group>"; };
+		41C0B3351F60DBBA007F8331 /* VCCRenderingEngine1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VCCRenderingEngine1.cpp; sourceTree = "<group>"; };
 		41D9C4BD1EE5331B00BFC29C /* hellocone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hellocone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41D9C4C11EE5331B00BFC29C /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		41D9C4C31EE5331B00BFC29C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41C0B3301F60CED3007F8331 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				41C0B3311F60CED3007F8331 /* Simple.frag */,
+				41C0B3321F60CED3007F8331 /* Simple.vert */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
 		41D9C4B41EE5331B00BFC29C = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				41D9C4FE1EE5B1B200BFC29C /* VCCRenderingEngine2.cpp */,
+				41C0B3351F60DBBA007F8331 /* VCCRenderingEngine1.cpp */,
 				41D9C4FC1EE555E500BFC29C /* VCCRenderingEngine.hpp */,
 				41D9C4F81EE5392B00BFC29C /* GLView.h */,
 				41D9C4F91EE5392B00BFC29C /* GLView.mm */,
@@ -127,6 +141,7 @@
 				41A012611F6009080040EB57 /* Matrix.hpp */,
 				41A012621F6009080040EB57 /* Quaternion.hpp */,
 				41A012631F6009080040EB57 /* Vector.hpp */,
+				41C0B3301F60CED3007F8331 /* Shaders */,
 				41D9C4CC1EE5331B00BFC29C /* Assets.xcassets */,
 				41D9C4CE1EE5331B00BFC29C /* LaunchScreen.storyboard */,
 				41D9C4D11EE5331B00BFC29C /* Info.plist */,
@@ -311,6 +326,7 @@
 				41D9C4C21EE5331B00BFC29C /* main.mm in Sources */,
 				41D9C4FA1EE5392B00BFC29C /* GLView.mm in Sources */,
 				41D9C5001EE5B1B200BFC29C /* VCCRenderingEngine2.cpp in Sources */,
+				41C0B3361F60DBBA007F8331 /* VCCRenderingEngine1.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3ST297D7G8;
-				INFOPLIST_FILE = opengles1/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/opengles2/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qiu.opengles1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -466,7 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3ST297D7G8;
-				INFOPLIST_FILE = opengles1/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/opengles2/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qiu.opengles1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

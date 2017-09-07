@@ -43,5 +43,5 @@ struct tagVCCRenderingEngine {
 typedef struct tagVCCRenderingEngine VCCRenderingEngine;
 
 VCCRenderingEngine* CreateRenderer1();
-
+VCCRenderingEngine* CreateRenderer2();
 #endif /* VCCRenderingEngine_hpp */

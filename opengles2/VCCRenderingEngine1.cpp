@@ -6,22 +6,15 @@
 //  Copyright © 2017 qiu. All rights reserved.
 //
 
-//  shader 版 还应出去 _OES 和 OES 相关字段
+//VCCRenderingEngine1类和工厂方法
 
-//VCCRenderingEngine2类和工厂方法
-
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
+#include <OpenGLES/ES1/gl.h>
+#include <OpenGLES/ES1/glext.h>
 #include "VCCRenderingEngine.hpp"
 
 #include "Quaternion.hpp"
 #include <vector>
 
-#include <iostream>
-#define STRINGIFY(A) #A
-
-#include "Shaders/Simple.frag"
-#include "Shaders/Simple.vert"
 static const float AnimationDuration = 0.25f;
 using namespace std;
 struct Vertex{
@@ -30,7 +23,7 @@ struct Vertex{
 };
 
 // Animation 结构将开启 3D 转换功能并包含了初始方位、当前差值方位以及结束方位3个方向上的四元数。
-// 同时，该结构还定义了两个时间间隔值 Elapsed 和 Duration，单位为秒，他们用于计算 0~1 之间的插值结构。
+// 同时，该结构还定义了两个时间间隔值 Elapsed 和 Duration，单位为秒，他们用于计算 0~1 之间的差值结构。
 
 struct Animation{
     Quaternion Start;
@@ -46,19 +39,15 @@ struct Animation{
 //浮点常量以定义对应的角速度；
 static const float RevolutionsPerSecond = 1;
 
-class VCCRenderingEngine2 : public VCCRenderingEngine{
+class VCCRenderingEngine1 : public VCCRenderingEngine{
 public:
-    VCCRenderingEngine2();
+    VCCRenderingEngine1();
     void Initialize(int width, int height);
     void Render() const;
     void UpdateAnimation(float timeStep);
     void OnRotate(VCCDeviceOrientation newOrientation);
 private:
-    
-    // shader ...
-    GLuint BuildShader(const char* source, GLenum shaderType) const;
-    GLuint BuildProgram(const char* vShader, const char* fShader) const;
-    GLuint m_simpleProgram;
+
     
     //三角形数据位于两个 STL 容器 m_cone 和 m_disk 中。由于数据尺寸事先已知，向量容器类可视为一类较为理想的数据结构并可确保数据的连续存储。这里，针对 OpenGL，数据的连续存储是十分必要的。
     
@@ -79,15 +68,15 @@ private:
 //其中， UpdateAnimation() 和 OnRotate()通过桩函数（存根函数）实现，且需要进一步完善以支持旋转操作
 
 
-VCCRenderingEngine* CreateRenderer2()
+VCCRenderingEngine* CreateRenderer1()
 {
-    return new VCCRenderingEngine2();
+    return new VCCRenderingEngine1();
 }
-VCCRenderingEngine2::VCCRenderingEngine2()
+VCCRenderingEngine1::VCCRenderingEngine1()
 {
     //生成渲染缓冲区操作符并将其绑定至管线上。
-    glGenRenderbuffers(1, &m_colorRenderbuffer);
-    glBindRenderbuffer(GL_RENDERBUFFER, m_colorRenderbuffer);
+    glGenRenderbuffersOES(1, &m_colorRenderbuffer);
+    glBindRenderbufferOES(GL_RENDERBUFFER_OES, m_colorRenderbuffer);
 }
 
 //Initialize()方法将构建视口变换居正以及投影矩阵。其中，投影矩阵定义了一个当前可见场景的 3D 空间
@@ -95,7 +84,7 @@ VCCRenderingEngine2::VCCRenderingEngine2()
 //待生成全部顶点后，代码将对 OpenGL 帧缓冲区对象以及转换状态进行初始化操作。
 //鉴于当前程序包含了大量的 3D 操作，因而需要开启深度测试。
 
-void VCCRenderingEngine2::Initialize(int width, int height)
+void VCCRenderingEngine1::Initialize(int width, int height)
 {
     // 将对象分解为三角形的过程通常称作三角形剖分，更常见的称谓为细分操作，进而反映了更为广泛的表面多边形填充问题。
     
@@ -164,9 +153,9 @@ void VCCRenderingEngine2::Initialize(int width, int height)
     
     // 创建深度缓存
     // 生成深度缓冲区 ID，实施绑定操作并分配储存空间。
-    glGenRenderbuffers(1, &m_depthRenderbuffer);
-    glBindRenderbuffer(GL_RENDERBUFFER, m_depthRenderbuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
+    glGenRenderbuffersOES(1, &m_depthRenderbuffer);
+    glBindRenderbufferOES(GL_RENDERBUFFER_OES, m_depthRenderbuffer);
+    glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_DEPTH_COMPONENT16_OES, width, height);
     
     
     
@@ -176,33 +165,32 @@ void VCCRenderingEngine2::Initialize(int width, int height)
     
     
     
-    glGenFramebuffers(1, &m_framebuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, m_colorRenderbuffer);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthRenderbuffer);
+    glGenFramebuffersOES(1, &m_framebuffer);
+    glBindFramebufferOES(GL_FRAMEBUFFER_OES, m_framebuffer);
+    glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER_OES, m_colorRenderbuffer);
+    glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_DEPTH_ATTACHMENT_OES, GL_RENDERBUFFER_OES, m_depthRenderbuffer);
     
     // Bind the color buffer for rendering
     // 绑定颜色渲染缓冲区并使未来的渲染操作与其发生关联。
-    glBindRenderbuffer(GL_RENDERBUFFER, m_colorRenderbuffer);
+    glBindRenderbufferOES(GL_RENDERBUFFER_OES, m_colorRenderbuffer);
     // 构建视口的左、下、宽、以及高度属性值。
     glViewport(0, 0, width, height);
     // 针对 3D 场景，开启深度测试功能。
     glEnable(GL_DEPTH_TEST);
-    //    构建投影和模型-视图转换，针对 ES 2.0 规范，相关内容不再有效
-    //    glMatrixMode(GL_PROJECTION);
-    //    glFrustumf(-1.6f, 1.6, -2.4, 2.4, 5, 10);
-    //    glMatrixMode(GL_MODELVIEW);
-    //    glTranslatef(0, 0, -7);
-    
-    //    修改如下
-    m_simpleProgram = BuildProgram(SimpleVertexShader, SimpleFragmentShader);
-    //
-    glUseProgram(m_simpleProgram);
-    // Set projection matrix
-    GLuint projectionUniform = glGetUniformLocation(m_simpleProgram, "Projection");
-    mat4 projectionMatrix = mat4::Frustum(-1.6f, 1.6, -2.4, 2.4, 5, 10);
-    glUniformMatrix4fv(projectionUniform, 1, 0, projectionMatrix.Pointer());
-
+    // 构建投影和模型-视图转换。
+    glMatrixMode(GL_PROJECTION);
+    glFrustumf(-1.6f, 1.6, -2.4, 2.4, 5, 10);
+    glMatrixMode(GL_MODELVIEW);
+    glTranslatef(0, 0, -7);
+            //glMatrixMode(GL_PROJECTION);
+            //initialize the projection matrix
+            //const float maxX = 2;
+            //const float maxY = 3;
+            //glOrthof(-maxX, maxX, -maxY, maxY, -1, 1);
+            //glMatrixMode(GL_MODELVIEW);
+            // Initialize the rotation animation state
+            //OnRotate(VCCDeviceOrientationPortrait);
+            //m_currentAngle = m_desiredAngle;
     
 }
 
@@ -216,50 +204,33 @@ void VCCRenderingEngine2::Initialize(int width, int height)
 
 
 
-void VCCRenderingEngine2::Render() const
+void VCCRenderingEngine1::Render() const
 {
-    GLuint positionSlot = glGetAttribLocation(m_simpleProgram, "Position");
-    GLuint colorSlot = glGetAttribLocation(m_simpleProgram, "SourceColor");
-    
     glClearColor(0.5f, 0.5f, 0.5f, 1);
     // 针对深度缓冲区，增加了一个参数
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //为了防止累积效应，代码中还添加了调用 glPushMatrix() 和 glPopMatrix()
+    glPushMatrix();
     
-    glEnableVertexAttribArray(positionSlot);
-    glEnableVertexAttribArray(colorSlot);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
     mat4 rotation(m_animation.Current.ToMatrix());
-    mat4 translation = mat4::Translate(0, 0, -7);
+    glMultMatrixf(rotation.Pointer());
     
-    // Set the model-view matrix
-    GLint modelviewUniform = glGetUniformLocation(m_simpleProgram, "Modelview");
-    mat4 modelviewMatrix = rotation * translation;
-    glUniformMatrix4fv(modelviewUniform, 1, 0, modelviewMatrix.Pointer());
-
+    // draw cone
+    glVertexPointer(3, GL_FLOAT, sizeof(Vertex), &m_cone[0].Position.x);
+    glColorPointer(4, GL_FLOAT, sizeof(Vertex), &m_cone[0].Color.x);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, m_cone.size());//该函数调用即可令 OpenGL 从定义于 gl*Pointer 中的指针获取数据，同时三角形数据将渲染至目标表面上。
     
-    // draw cone 相对 es1.1 版本也要发生变化
-    {
-        GLsizei stride = sizeof(Vertex);
-        const GLvoid* pCoords = &m_cone[0].Position.x;
-        const GLvoid* pColors = &m_cone[0].Color.x;
-        glVertexAttribPointer(positionSlot, 3, GL_FLOAT, GL_FALSE, stride, pCoords);
-        glVertexAttribPointer(colorSlot, 4, GL_FLOAT, GL_FALSE, stride, pColors);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, m_cone.size());//该函数调用即可令 OpenGL 从定义于 gl*Pointer 中的指针获取数据，同时三角形数据将渲染至目标表面上。
-    }
     // draw disk
-    {
-        GLsizei stride = sizeof(Vertex);
-        const GLvoid* pCoords = &m_disk[0].Position.x;
-        const GLvoid* pColors = &m_disk[0].Color.x;
-        glVertexAttribPointer(positionSlot, 3, GL_FLOAT, GL_FALSE, stride, pCoords);
-        glVertexAttribPointer(colorSlot, 4, GL_FLOAT, GL_FALSE, stride, pColors);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, m_disk.size());
-        
-    }
+    glVertexPointer(3, GL_FLOAT, sizeof(Vertex), &m_disk[0].Position.x);
+    glColorPointer(4, GL_FLOAT, sizeof(Vertex), &m_disk[0].Color.x);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, m_disk.size());
     
-    glDisableVertexAttribArray(positionSlot);
-    glDisableVertexAttribArray(colorSlot);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
     //关闭两个顶点属性。在执行绘制命令时，需要开启相关的顶点属性，但当后续绘制命令采用完全不同的垫垫属性集时，保留原有的属性并非上次。
-
+    glPopMatrix();
 }
 
 //程序考察箭头的旋转方向问题，即顺时针还是逆时针旋转。此处，仅检测期望值是否大于当前角度值并不充分：若用户将设备方位从 270 改变至 0，则该角度值应增至 360。
@@ -269,7 +240,7 @@ void VCCRenderingEngine2::Render() const
 
 
 // 为了实现平滑的旋转操作，UpdateAnimation() 方法将在旋转四元数的基础上调用 Slerp() 方法。
-void VCCRenderingEngine2::UpdateAnimation(float timeStep)
+void VCCRenderingEngine1::UpdateAnimation(float timeStep)
 {
     if (m_animation.Current == m_animation.End)
         return;
@@ -283,7 +254,7 @@ void VCCRenderingEngine2::UpdateAnimation(float timeStep)
 }
 
 // OnRotate() 方法将启动一个新的动画序列
-void VCCRenderingEngine2::OnRotate(VCCDeviceOrientation newOrientation)
+void VCCRenderingEngine1::OnRotate(VCCDeviceOrientation newOrientation)
 {
     vec3 direction;
     
@@ -318,45 +289,4 @@ void VCCRenderingEngine2::OnRotate(VCCDeviceOrientation newOrientation)
     m_animation.Start = m_animation.Current = m_animation.End;
     m_animation.End = Quaternion::CreateFromVectors(vec3(0, 1, 0), direction);
     
-}
-
-GLuint VCCRenderingEngine2::BuildShader(const char *source, GLenum shaderType) const{
-    GLuint shaderHandle = glCreateShader(shaderType);
-    glShaderSource(shaderHandle, 1, &source, 0);
-    glCompileShader(shaderHandle);
-    
-    GLint compileSuccess;
-    glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &compileSuccess);
-    
-    if (compileSuccess == GL_FALSE) {
-        GLchar messages[256];
-        glGetShaderInfoLog(shaderHandle, sizeof(messages), 0, &messages[0]);
-        std::cout << messages;
-        exit(1);
-    }
-    
-    return shaderHandle;
-}
-
-GLuint VCCRenderingEngine2::BuildProgram(const char* vertexShaderSource,
-                                      const char* fragmentShaderSource) const
-{
-    GLuint vertexShader = BuildShader(vertexShaderSource, GL_VERTEX_SHADER);
-    GLuint fragmentShader = BuildShader(fragmentShaderSource, GL_FRAGMENT_SHADER);
-    
-    GLuint programHandle = glCreateProgram();
-    glAttachShader(programHandle, vertexShader);
-    glAttachShader(programHandle, fragmentShader);
-    glLinkProgram(programHandle);
-    
-    GLint linkSuccess;
-    glGetProgramiv(programHandle, GL_LINK_STATUS, &linkSuccess);
-    if (linkSuccess == GL_FALSE) {
-        GLchar messages[256];
-        glGetProgramInfoLog(programHandle, sizeof(messages), 0, &messages[0]);
-        std::cout << messages;
-        exit(1);
-    }
-    
-    return programHandle;
 }
